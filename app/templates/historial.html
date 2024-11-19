@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Mis Cursos{% endblock %}
+
+{% block content %}
+<h2>Mis Cursos Adquiridos</h2>
+<div class="list-group">
+    {% for user_course in courses %}
+    <div class="list-group-item">
+        <h5>{{ user_course.course.name }}</h5>
+        <p>{{ user_course.course.description }}</p>
+    </div>
+    {% else %}
+    <p>No has adquirido cursos aún.</p>
+    {% endfor %}
+</div>
+{% endblock %}

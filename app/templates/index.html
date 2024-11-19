@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <p>Hello</p>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1>Bienvenido a la Academia de Programación</h1>
+    <p>Explora nuestros cursos y mejora tus habilidades.</p>
+    <a href="{{ url_for('main.courses') }}" class="btn btn-primary">Ver Cursos</a>
+</div>
+{% endblock %}

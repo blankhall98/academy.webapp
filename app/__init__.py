@@ -1,4 +1,5 @@
 from .extensions import app, db
+from flask_session import Session
 
 def create_app():
     app.config.from_object("config.Config")
@@ -11,5 +12,9 @@ def create_app():
 
     from .routes import bp as main_bp
     app.register_blueprint(main_bp)
+
+    # Manejo de sesiones
+    app.config["SESSION_TYPE"] = "filesystem"
+    Session(app)
 
     return app
