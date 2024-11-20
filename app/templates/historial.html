@@ -7,8 +7,8 @@
 <div class="list-group">
     {% for user_course in courses %}
     <div class="list-group-item">
-        <h5>{{ user_course.course.name }}</h5>
-        <p>{{ user_course.course.description }}</p>
+        <h5>{{ user_course.name }}</h5>
+        <p>{{ user_course.description }}</p>
     </div>
     {% else %}
     <p>No has adquirido cursos aún.</p>

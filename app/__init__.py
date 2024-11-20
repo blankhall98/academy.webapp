@@ -1,10 +1,11 @@
-from .extensions import app, db
+from .extensions import app, db, migrate
 from flask_session import Session
 
 def create_app():
     app.config.from_object("config.Config")
 
     db.init_app(app)
+    migrate.init_app(app, db)
 
     with app.app_context():
         from . import routes, models

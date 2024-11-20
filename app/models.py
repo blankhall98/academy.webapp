@@ -5,6 +5,7 @@ class User(db.Model):
     username = db.Column(db.String(80), nullable=False, unique=True)
     email = db.Column(db.String(120), nullable=False, unique=True)
     password = db.Column(db.String(200), nullable=False)
+    is_admin = db.Column(db.Boolean, default=False)  # Campo para distinguir administradores
     courses = db.relationship("UserCourse", backref="user", lazy=True)
 
 class Course(db.Model):
