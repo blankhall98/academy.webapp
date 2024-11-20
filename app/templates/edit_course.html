@@ -4,7 +4,7 @@
 
 {% block content %}
 <h2>Editar Curso</h2>
-<form method="POST" action="{{ url_for('main.edit_course', course_id=course.id) }}">
+<form method="POST" action="{{ url_for('main.edit_course', course_id=course.id) }}" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="name" class="form-label">Nombre del Curso</label>
         <input type="text" class="form-control" id="name" name="name" value="{{ course.name }}" required>
@@ -17,6 +17,36 @@
         <label for="price" class="form-label">Precio</label>
         <input type="number" class="form-control" id="price" name="price" value="{{ course.price }}" step="0.01" required>
     </div>
+    <div class="mb-3">
+        <label for="promo_image" class="form-label">Imagen Promocional (Opcional)</label>
+        <input type="file" class="form-control" id="promo_image" name="promo_image" accept="image/*">
+        {% if course.promo_image %}
+        <img src="{{ course.promo_image }}" alt="Imagen Actual" class="img-thumbnail mt-2" width="150">
+        {% endif %}
+    </div>
+    <div class="mb-3">
+        <label for="syllabus" class="form-label">Archivo PDF del Temario (Opcional)</label>
+        <input type="file" class="form-control" id="syllabus" name="syllabus" accept="application/pdf">
+        {% if course.syllabus %}
+        <a href="{{ course.syllabus }}" target="_blank" class="d-block mt-2">Ver Archivo Actual</a>
+        {% endif %}
+    </div>
+    <div class="mb-3">
+        <label for="start_date" class="form-label">Fecha de Inicio</label>
+        <input type="date" class="form-control" id="start_date" name="start_date" value="{{ course.start_date }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="class_days" class="form-label">Días de Clase</label><br>
+        {% for day in ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"] %}
+        <input type="checkbox" name="class_days" value="{{ day }}" 
+            {% if day in course.class_days %}checked{% endif %}> {{ day }}
+        {% endfor %}
+    </div>
+    <div class="mb-3">
+        <label for="class_time" class="form-label">Horario</label>
+        <input type="text" class="form-control" id="class_time" name="class_time" value="{{ course.class_time }}" required>
+    </div>
     <button type="submit" class="btn btn-primary">Actualizar</button>
 </form>
 {% endblock %}
+

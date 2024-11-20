@@ -13,6 +13,11 @@ class Course(db.Model):
     name = db.Column(db.String(120), nullable=False)
     description = db.Column(db.Text, nullable=False)
     price = db.Column(db.Float, nullable=False)
+    promo_image = db.Column(db.String(200), nullable=True)  # URL to the promotional image
+    syllabus = db.Column(db.String(200), nullable=True)  # URL to the syllabus PDF
+    start_date = db.Column(db.Date, nullable=True)  # Fecha de inicio
+    class_days = db.Column(db.String(200), nullable=True)  # Días de clase
+    class_time = db.Column(db.String(50), nullable=True)  # Horario
 
 class UserCourse(db.Model):
     id = db.Column(db.Integer, primary_key=True)

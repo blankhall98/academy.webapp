@@ -4,6 +4,8 @@ from .models import User, Course, UserCourse
 from .extensions import db
 from functools import wraps
 from flask import abort
+from .utils import save_file
+from datetime import datetime
 
 bp = Blueprint('main', __name__)
 
@@ -125,8 +127,23 @@ def add_course():
         name = request.form["name"]
         description = request.form["description"]
         price = request.form["price"]
+        start_date = datetime.strptime(request.form["start_date"], "%Y-%m-%d").date()
+        class_days = ", ".join(request.form.getlist("class_days"))  # Combine days into a string
+        class_time = request.form["class_time"]
 
-        new_course = Course(name=name, description=description, price=price)
+        # Handle optional files
+        promo_image = None
+        syllabus = None
+
+        if "promo_image" in request.files and request.files["promo_image"].filename:
+            promo_image = save_file(request.files["promo_image"], "images")
+
+        if "syllabus" in request.files and request.files["syllabus"].filename:
+            syllabus = save_file(request.files["syllabus"], "pdfs")
+
+        new_course = Course(name=name, description=description, price=price,
+                             promo_image=promo_image, syllabus=syllabus,start_date=start_date,
+                             class_days=class_days, class_time=class_time)
         db.session.add(new_course)
         db.session.commit()
         flash("Curso agregado exitosamente.", "success")
@@ -143,6 +160,17 @@ def edit_course(course_id):
         course.name = request.form["name"]
         course.description = request.form["description"]
         course.price = request.form["price"]
+
+        course.start_date = datetime.strptime(request.form["start_date"], "%Y-%m-%d").date()
+        course.class_days = ", ".join(request.form.getlist("class_days"))  # Combine days into a string
+        course.class_time = request.form["class_time"]
+
+        if "promo_image" in request.files and request.files["promo_image"].filename:
+            course.promo_image = save_file(request.files["promo_image"], "images")
+
+        if "syllabus" in request.files and request.files["syllabus"].filename:
+            course.syllabus = save_file(request.files["syllabus"], "pdfs")
+
         db.session.commit()
         flash("Curso actualizado exitosamente.", "success")
         return redirect(url_for("main.admin_courses"))

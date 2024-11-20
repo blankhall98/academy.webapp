@@ -4,7 +4,7 @@
 
 {% block content %}
 <h2>Agregar Nuevo Curso</h2>
-<form method="POST" action="{{ url_for('main.add_course') }}">
+<form method="POST" action="{{ url_for('main.add_course') }}" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="name" class="form-label">Nombre del Curso</label>
         <input type="text" class="form-control" id="name" name="name" required>
@@ -16,6 +16,32 @@
     <div class="mb-3">
         <label for="price" class="form-label">Precio</label>
         <input type="number" class="form-control" id="price" name="price" step="0.01" required>
+    </div>
+    <div class="mb-3">
+        <label for="start_date" class="form-label">Fecha de Inicio</label>
+        <input type="date" class="form-control" id="start_date" name="start_date" required>
+    </div>
+    <div class="mb-3">
+        <label for="class_days" class="form-label">Días de Clase</label><br>
+        <input type="checkbox" name="class_days" value="Lunes"> Lunes
+        <input type="checkbox" name="class_days" value="Martes"> Martes
+        <input type="checkbox" name="class_days" value="Miércoles"> Miércoles
+        <input type="checkbox" name="class_days" value="Jueves"> Jueves
+        <input type="checkbox" name="class_days" value="Viernes"> Viernes
+        <input type="checkbox" name="class_days" value="Sábado"> Sábado
+        <input type="checkbox" name="class_days" value="Domingo"> Domingo
+    </div>
+    <div class="mb-3">
+        <label for="class_time" class="form-label">Horario</label>
+        <input type="text" class="form-control" id="class_time" name="class_time" placeholder="Ej: 18:00 - 20:00" required>
+    </div>
+    <div class="mb-3">
+        <label for="promo_image" class="form-label">Imagen Promocional (Opcional)</label>
+        <input type="file" class="form-control" id="promo_image" name="promo_image" accept="image/*">
+    </div>
+    <div class="mb-3">
+        <label for="syllabus" class="form-label">Archivo PDF del Temario (Opcional)</label>
+        <input type="file" class="form-control" id="syllabus" name="syllabus" accept="application/pdf">
     </div>
     <button type="submit" class="btn btn-success">Agregar</button>
 </form>

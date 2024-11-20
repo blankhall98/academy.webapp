@@ -4,3 +4,79 @@ body {
 h1, h2 {
     margin-top: 20px;
 }
+
+/* General Card Styling */
+.card {
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Syllabus Link */
+a.text-info {
+    font-weight: bold;
+    color: #17a2b8;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+a.text-info:hover {
+    color: #0d6efd; /* Slightly darker blue for hover */
+}
+
+/* Comprar Button */
+.btn-primary {
+    font-size: 1.1rem; /* Slightly larger text */
+    font-weight: bold;
+    background-color: #007bff;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px; /* Rounded edges for an aesthetic look */
+    box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.5);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+    box-shadow: 0px 8px 20px rgba(0, 123, 255, 0.6);
+}
+
+/* Card Footer */
+.card-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* Card Image Styling */
+.course-image {
+    height: 200px; /* Set a standard height */
+    object-fit: cover; /* Ensures the image covers the area without stretching */
+    border-top-left-radius: 10px; /* Matches card border-radius */
+    border-top-right-radius: 10px;
+}
+
+@media (min-width: 768px) {
+    /* Adjust image height for larger screens (laptops and up) */
+    .course-image {
+        height: 150px;
+    }
+}
+
+/* Course Info Styling */
+.course-info {
+    background-color: #fdfdfd; /* Light background */
+    border: 1px  #e0e0e0; /* Subtle border */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05); /* Light shadow for a card effect */
+}
+
+/* Icons in the Course Info Section */
+.course-info i {
+    font-size: 1rem;
+    color: black; /* Matches primary button color */
+}
